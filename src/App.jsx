@@ -24,10 +24,10 @@ function App() {
             <span style={{ fontWeight: 500, fontSize: '1.1rem', color: '#222' }}>I'm Shahneous Ali</span>
           </div>
           <h1 style={{ fontSize: '2.5rem', fontWeight: 800, textAlign: 'center', margin: 0, marginBottom: '1rem', lineHeight: 1.1, color: '#222' }}>
-            I Build <span style={{ color: '#222', fontWeight: 700 }}>Full-Stack Stuff</span><br />That Actually Works!
+            I Engineer Ideas Into Reality
           </h1>
           <p style={{ color: '#555', fontSize: '1.1rem', maxWidth: 500, textAlign: 'center', marginBottom: '2rem' }}>
-            Code, bugs, and late-night coffee keep it all running.<br />I turn complex problems into clean, working solutions.
+            Turning ideas into scalable, robust applications that deliver real value. From concept to code, I make technology work flawlessly.
           </p>
           <Link to="/projects" style={{ background: '#222', color: '#fff', padding: '0.7rem 1.7rem', borderRadius: '1.2rem', fontSize: '1.1rem', fontWeight: 600, border: 'none', boxShadow: '0 2px 8px #0002', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}>
             Projects &gt;
@@ -45,8 +45,11 @@ function App() {
             <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#222', marginBottom: '0.5rem', textAlign: 'left' }}>A Bit About Me</h2>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#ff5722', margin: 0, marginBottom: '1rem', textAlign: 'left' }}>(& My Code)</h3>
             <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '2rem', lineHeight: 1.6, textAlign: 'left' }}>
-              I'm a full-stack developer who writes code that doesn't bark! I eat & solve problems. From API and database to client UI for each. Pay for coffee late, work harder and solve tasks like it's a hackathon.<br /><br />
-              I like building things that scale, make sense, and don't break under pressure most of the time. Complex challenges? Bring 'em on! I turn chaos into clean, working solutions.
+              I am a full-stack developer who began my journey in game development, creating two fully functional 2D games with Unity that were not just experimental but fully playable. As my passion for building grew, I transitioned into app development, starting with Kotlin and eventually finding my stride with Flutter.<br /><br />
+              Along the way, I strengthened my foundations in problem-solving by completing 150 top LeetCode questions and diving deep into data structures, algorithms, and object-oriented programming. This sharpened my ability to approach complex challenges with clean, efficient solutions.<br /><br />
+              Since then, I have developed a wide range of applications: PokéKanto (a Pokédex-inspired app), a restaurant management system, smart to-do lists, sticky notes, work planner and tracker app, a social media platform, an age-time calculator, and a car service cost tracker. Each project introduced me to new tools, libraries, and design patterns, fueling my drive to tackle even more sophisticated challenges.<br /><br />
+              Currently, I am working as a software developer at an IT firm where I am mastering real-world workflows, collaborating within teams, and building scalable products that are robust under pressure.<br /><br />
+              Complex problems excite me. I enjoy transforming chaos into clean, functional solutions fueled by coffee and a relentless curiosity for growth.
             </p>
             <Link to="/contact" style={{ background: '#222', color: '#fff', padding: '0.7rem 1.7rem', borderRadius: '1.2rem', fontSize: '1.1rem', fontWeight: 600, border: 'none', boxShadow: '0 2px 8px #0002', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}>
               Contact &gt;
@@ -70,19 +73,23 @@ function App() {
               <tbody>
                 <tr style={{ borderTop: '1px solid #f0f0f0' }}>
                   <td style={{ padding: '1rem 1.2rem', color: '#ff5722', fontWeight: 600 }}>Languages</td>
-                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>C++, JavaScript, TypeScript</td>
+                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>C, C++, C#, Java, Dart</td>
                 </tr>
                 <tr style={{ borderTop: '1px solid #f0f0f0' }}>
-                  <td style={{ padding: '1rem 1.2rem', color: '#ff5722', fontWeight: 600 }}>Frontend</td>
-                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>React, Next, Remix, Redux, Tailwind, Bootstrap, MUI, Shadcn, Stripe, Framer</td>
+                  <td style={{ padding: '1rem 1.2rem', color: '#ff5722', fontWeight: 600 }}>Frameworks</td>
+                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>Flutter, Unity, React</td>
                 </tr>
                 <tr style={{ borderTop: '1px solid #f0f0f0' }}>
                   <td style={{ padding: '1rem 1.2rem', color: '#ff5722', fontWeight: 600 }}>Backend</td>
-                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>NodeJS, Express, Hasura, AWS, Redis, RDS, Microservices, Paddle, Stripe, GitHub Action, NGINX, Console Server</td>
+                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>Node.js, Express, FastAPI</td>
                 </tr>
                 <tr style={{ borderTop: '1px solid #f0f0f0' }}>
-                  <td style={{ padding: '1rem 1.2rem', color: '#ff5722', fontWeight: 600 }}>Database</td>
-                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>MongoDB, Mongoose, MySQL, PostgreSQL, Prisma</td>
+                  <td style={{ padding: '1rem 1.2rem', color: '#ff5722', fontWeight: 600 }}>Databases</td>
+                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>MongoDB, MySQL, PostgreSQL, SQLite</td>
+                </tr>
+                <tr style={{ borderTop: '1px solid #f0f0f0' }}>
+                  <td style={{ padding: '1rem 1.2rem', color: '#ff5722', fontWeight: 600 }}>Tools</td>
+                  <td style={{ padding: '1rem 1.2rem', color: '#222' }}>Firebase, Supabase, Git</td>
                 </tr>
               </tbody>
             </table>
@@ -98,48 +105,22 @@ function App() {
           <div style={{ background: '#fff', borderRadius: '1.2rem', boxShadow: '0 4px 24px #0001', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
-                <div style={{ fontWeight: 700, fontSize: '1.3rem', color: '#222' }}>Software Engineer</div>
-                <div style={{ color: '#888', fontSize: '1rem', marginTop: 2 }}>Apr 2023 – Apr 2025</div>
+                <div style={{ fontWeight: 700, fontSize: '1.3rem', color: '#222' }}>Software Developer</div>
+                <div style={{ color: '#888', fontSize: '1rem', marginTop: 2 }}>May 2025 – Present</div>
               </div>
               <span style={{ fontSize: '1.5rem', color: '#ff5722' }}>🧑‍💻</span>
             </div>
             <ul style={{ color: '#444', fontSize: '1.05rem', margin: 0, paddingLeft: '1.2rem', lineHeight: 1.7 }}>
-              <li>Built and maintained backend systems and project architecture using a monorepo for multiple apps.</li>
-              <li>Led front and back-end teams, handled task distribution, code reviews, and made key tech decisions.</li>
-              <li>Designed ERDs, planned flows, and built scalable database schemas for performance and reliability.</li>
-              <li>Managed 20+ projects in one codebase, keeping collaboration smooth and development consistent.</li>
+              <li>Built and maintained front-end and back-end systems along with project architecture using a real-time repository.</li>
+              <li>Managed multiple projects within a single codebase, ensuring smooth collaboration and consistent development workflows.</li>
+              <li>Resolved bugs and issues effectively based on feedback from testers and QA teams.</li>
             </ul>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginTop: '0.5rem' }}>
               <span style={{ width: 32, height: 32, borderRadius: '50%', background: '#ff2d2d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <span style={{ color: '#fff', fontSize: '1.3rem' }}>★</span>
               </span>
               <div>
-                <div style={{ fontWeight: 600, color: '#222', fontSize: '1rem' }}>OctopusX</div>
-                <div style={{ color: '#888', fontSize: '0.95rem' }}>Chattogram, Bangladesh</div>
-              </div>
-            </div>
-          </div>
-          {/* Card 2 */}
-          <div style={{ background: '#fff', borderRadius: '1.2rem', boxShadow: '0 4px 24px #0001', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ fontWeight: 700, fontSize: '1.3rem', color: '#222' }}>Full Stack Developer</div>
-                <div style={{ color: '#888', fontSize: '1rem', marginTop: 2 }}>Jan 2023 – Apr 2023</div>
-              </div>
-              <span style={{ fontSize: '1.5rem', color: '#ff5722' }}>🧑‍💻</span>
-            </div>
-            <ul style={{ color: '#444', fontSize: '1.05rem', margin: 0, paddingLeft: '1.2rem', lineHeight: 1.7 }}>
-              <li>Handled MongoDB indexing, search, filter, and pagination using Atlas Search; optimized DB structure.</li>
-              <li>Integrated Cloudflare R2, Mixpanel, Mailgun, Stripe, PayPal, and real-time notifications.</li>
-              <li>Built bulk file/video upload & download, responsive dashboards, and analytics tracking.</li>
-            </ul>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginTop: '0.5rem' }}>
-              <span style={{ width: 32, height: 32, borderRadius: '50%', background: '#7fff2d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ color: '#fff', fontSize: '1.3rem' }}>★</span>
-              </span>
-              <div>
-                <div style={{ fontWeight: 600, color: '#222', fontSize: '1rem' }}>Monster Studio</div>
-                <div style={{ color: '#888', fontSize: '0.95rem' }}>Chattogram, Bangladesh</div>
+                <div style={{ fontWeight: 600, color: '#222', fontSize: '1rem' }}>Fluxion Tech – Remote</div>
               </div>
             </div>
           </div>
