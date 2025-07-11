@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import Header from './Header.jsx';
 
+// Import images
+import snapsdi1 from './assets/projects/snapsdi1.png';
+import snapsdi2 from './assets/projects/snapsdi2.png';
+import snapsdi3 from './assets/projects/snapsdi3.png';
+import snapsdi4 from './assets/projects/snapsdi4.png';
+import snapsdi5 from './assets/projects/snapsdi5.png';
+import snapsdi6 from './assets/projects/snapsdi6.png';
+import snapsdi7 from './assets/projects/snapsdi7.png';
+import timecraft1 from './assets/projects/427469063-49cbe623-9407-45d6-be77-603b79b2de36.png';
+import timecraft2 from './assets/projects/427470742-8511c1df-cb7a-4037-bf2f-32b44668ce33.png';
+import timecraft3 from './assets/projects/427470251-fe482535-c06a-456a-aa7f-bb1df6897831.png';
+import timecraft4 from './assets/projects/427469880-3332ea40-e711-47d8-bd6d-1ed40ea6d670.png';
+import quranUI from './assets/projects/ui.png';
+
 const dummyProjects = [
   {
     title: 'snapsdi',
@@ -29,13 +43,13 @@ const dummyProjects = [
       'flutter_lints'
     ],
     screenshots: [
-      '/assets/projects/snapsdi1.png',
-      '/assets/projects/snapsdi2.png',
-      '/assets/projects/snapsdi3.png',
-      '/assets/projects/snapsdi4.png',
-      '/assets/projects/snapsdi5.png',
-      '/assets/projects/snapsdi6.png',
-      '/assets/projects/snapsdi7.png'
+      snapsdi1,
+      snapsdi2,
+      snapsdi3,
+      snapsdi4,
+      snapsdi5,
+      snapsdi6,
+      snapsdi7
     ],
     workflow: [
       'User signs up or logs in',
@@ -75,10 +89,10 @@ const dummyProjects = [
       'intl'
     ],
     screenshots: [
-      '/assets/projects/427469063-49cbe623-9407-45d6-be77-603b79b2de36.png',
-      '/assets/projects/427470742-8511c1df-cb7a-4037-bf2f-32b44668ce33.png',
-      '/assets/projects/427470251-fe482535-c06a-456a-aa7f-bb1df6897831.png',
-      '/assets/projects/427469880-3332ea40-e711-47d8-bd6d-1ed40ea6d670.png'
+      timecraft1,
+      timecraft2,
+      timecraft3,
+      timecraft4
     ],
     workflow: [
       'User creates and manages tasks',
@@ -118,7 +132,7 @@ const dummyProjects = [
       'flutter_lints'
     ],
     screenshots: [
-      '/assets/projects/ui.png'
+      quranUI
     ],
     workflow: [
       'User selects a surah from the list',
