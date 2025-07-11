@@ -29,13 +29,13 @@ const dummyProjects = [
       'flutter_lints'
     ],
     screenshots: [
-      '/src/assets/projects/snapsdi1.png',
-      '/src/assets/projects/snapsdi2.png',
-      '/src/assets/projects/snapsdi3.png',
-      '/src/assets/projects/snapsdi4.png',
-      '/src/assets/projects/snapsdi5.png',
-      '/src/assets/projects/snapsdi6.png',
-      '/src/assets/projects/snapsdi7.png'
+      '/assets/projects/snapsdi1.png',
+      '/assets/projects/snapsdi2.png',
+      '/assets/projects/snapsdi3.png',
+      '/assets/projects/snapsdi4.png',
+      '/assets/projects/snapsdi5.png',
+      '/assets/projects/snapsdi6.png',
+      '/assets/projects/snapsdi7.png'
     ],
     workflow: [
       'User signs up or logs in',
@@ -75,11 +75,10 @@ const dummyProjects = [
       'intl'
     ],
     screenshots: [
-      '/src/assets/projects/timecraft/427469063-49cbe623-9407-45d6-be77-603b79b2de36.png',
-      '/src/assets/projects/timecraft/427470742-8511c1df-cb7a-4037-bf2f-32b44668ce33.png',
-      '/src/assets/projects/timecraft/427470251-fe482535-c06a-456a-aa7f-bb1df6897831.png',
-      '/src/assets/projects/timecraft/427469880-3332ea40-e711-47d8-bd6d-1ed40ea6d670.png',
-      
+      '/assets/projects/427469063-49cbe623-9407-45d6-be77-603b79b2de36.png',
+      '/assets/projects/427470742-8511c1df-cb7a-4037-bf2f-32b44668ce33.png',
+      '/assets/projects/427470251-fe482535-c06a-456a-aa7f-bb1df6897831.png',
+      '/assets/projects/427469880-3332ea40-e711-47d8-bd6d-1ed40ea6d670.png'
     ],
     workflow: [
       'User creates and manages tasks',
@@ -119,7 +118,7 @@ const dummyProjects = [
       'flutter_lints'
     ],
     screenshots: [
-      '/src/assets/projects/Quran/ui.png'
+      '/assets/projects/ui.png'
     ],
     workflow: [
       'User selects a surah from the list',
