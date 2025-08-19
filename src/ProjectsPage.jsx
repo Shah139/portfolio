@@ -14,8 +14,71 @@ import timecraft2 from './assets/projects/427470742-8511c1df-cb7a-4037-bf2f-32b4
 import timecraft3 from './assets/projects/427470251-fe482535-c06a-456a-aa7f-bb1df6897831.png';
 import timecraft4 from './assets/projects/427469880-3332ea40-e711-47d8-bd6d-1ed40ea6d670.png';
 import quranUI from './assets/projects/ui.png';
+import khabar1 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-01-616_com.example.khabar_khabo.jpg';
+import khabar2 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-12-783_com.example.khabar_khabo.jpg';
+import khabar3 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-23-616_com.example.khabar_khabo.jpg';
+import khabar4 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-38-764_com.example.khabar_khabo.jpg';
+import khabar5 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-54-052_com.example.khabar_khabo.jpg';
+import khabar6 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-37-01-599_com.example.khabar_khabo.jpg';
 
 const dummyProjects = [
+  {
+    title: 'Khabar Khabo',
+    date: 'Aug 19, 2025',
+    description: 'A modern food delivery application built with Flutter that connects users with delicious food from local restaurants. Order your favorite meals, customize them with add-ons, and track your delivery in real-time.',
+    details: [
+      'Features:',
+      '🍔 Extensive Menu: Browse through various food categories including burgers, salads, cookies, desserts, and drinks',
+      '🔧 Customizable Orders: Add extra toppings, sauces, and ingredients to personalize your meal',
+      '🛒 Smart Cart System: Easy-to-use shopping cart with real-time price calculations',
+      '📍 Location Services: Get accurate delivery to your current location',
+      '🔑 User Authentication: Secure login and registration system',
+      '🔥 Firebase Integration: Real-time data synchronization and cloud storage',
+      '💳 Payment Integration: Support for bKash and other payment methods',
+      '📊 Order Tracking: Real-time delivery progress updates',
+      '🌙 Theme Support: Light and dark mode with customizable themes',
+      '📱 Cross-platform: Available on both Android and iOS devices',
+      'Tech Stack:',
+      'Flutter (Frontend)',
+      'Firebase (Database & Backend)',
+      'GetX (State Management)',
+      'Google Maps (Location Services)',
+      'Payment Gateway Integration'
+    ],
+    packages: [
+      'flutter',
+      'firebase_core',
+      'cloud_firestore',
+      'firebase_auth',
+      'get',
+      'google_maps_flutter',
+      'geolocator',
+      'image_picker',
+      'cupertino_icons',
+      'flutter_test',
+      'integration_test',
+      'flutter_lints'
+    ],
+    screenshots: [
+      khabar1,
+      khabar2,
+      khabar3,
+      khabar4,
+      khabar5,
+      khabar6
+    ],
+    workflow: [
+      'User signs up or logs in to the app',
+      'Browse through various food categories and menus',
+      'Select items and customize with add-ons and toppings',
+      'Add items to cart with real-time price calculations',
+      'Set delivery location and proceed to checkout',
+      'Choose payment method (bKash, etc.) and complete order',
+      'Track delivery progress in real-time',
+      'Receive food at the specified location'
+    ],
+    github: 'https://github.com/Shah139/khabar-khabo'
+  },
   {
     title: 'snapsdi',
     date: 'Jul 1, 2023',
