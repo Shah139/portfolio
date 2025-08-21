@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header.jsx';
 
 // Import images
@@ -20,24 +21,166 @@ import khabar3 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-
 import khabar4 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-38-764_com.example.khabar_khabo.jpg';
 import khabar5 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-54-052_com.example.khabar_khabo.jpg';
 import khabar6 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-37-01-599_com.example.khabar_khabo.jpg';
+import carNotes1 from './assets/projects/car-notes/dfs (1).jpg';
+import carNotes2 from './assets/projects/car-notes/dfs (2).jpg';
+import carNotes3 from './assets/projects/car-notes/dfs (3).jpg';
+import carNotes4 from './assets/projects/car-notes/dfs (4).jpg';
+import carNotes5 from './assets/projects/car-notes/dfs (5).jpg';
+import carNotes6 from './assets/projects/car-notes/dfs (6).jpg';
+import carNotes7 from './assets/projects/car-notes/dfs (7).jpg';
+import bbm1 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.56.45_209a86fd.jpg';
+import bbm2 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.56.11_b8258a5f.jpg';
+import bbm3 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.08_210a3da6.jpg';
+import bbm4 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.08_edf7c204.jpg';
+import bbm5 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.07_7c60c9dd.jpg';
+import bbm6 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.06_3fe00c0a.jpg';
+import bbm7 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.05_7464dd30.jpg';
+import bbm8 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.03_1bc59948.jpg';
+import bbm9 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.03_4884ab07.jpg';
+import bbm10 from './assets/projects/bbm/WhatsApp Image 2025-08-22 at 00.55.04_9fb2698c.jpg';
 
 const dummyProjects = [
   {
+    id: 'bbm-shop',
+    title: 'BBM Shop',
+    date: 'Dec 15, 2024',
+    description: 'A comprehensive Flutter e-commerce app for BBM Business Bangla Machineries - a leading supplier of industrial machinery in Bangladesh. Features JWT authentication, product catalog, shopping cart, and custom PDF quotation generation.',
+    details: [
+      'Features:',
+      ' JWT Authentication System: WordPress integration with secure login and token management',
+      ' E-commerce Core: Product catalog with 1000+ industrial machinery products',
+      ' Smart Categorization: Hierarchical category system (A through K categories)',
+      ' Product Management: Dynamic status, rich specifications, and image gallery',
+      ' Custom PDF Generation: Professional quotation PDFs with company branding',
+      ' Data Management: SQLite database with WooCommerce API integration',
+      ' State Management: Provider pattern with real-time updates',
+      'Tech Stack:',
+      'Flutter (Frontend Framework)',
+      'WordPress + WooCommerce (Backend & E-commerce)',
+      'JWT Authentication (Secure API Access)',
+      'SQLite (Local Database)',
+      'Provider (State Management)',
+      'PDF Generation & Printing'
+    ],
+    packages: [
+      'flutter',
+      'provider',
+      'http',
+      'sqflite',
+      'shared_preferences',
+      'cached_network_image',
+      'carousel_slider',
+      'shimmer',
+      'flutter_staggered_grid_view',
+      'pdf',
+      'printing',
+      'open_file',
+      'image',
+      'connectivity_plus',
+      'url_launcher',
+      'share_plus',
+      'crypto'
+    ],
+    screenshots: [
+      bbm1,
+      bbm2,
+      bbm3,
+      bbm4,
+      bbm5,
+      bbm6,
+      bbm7,
+      bbm8,
+      bbm9,
+      bbm10
+    ],
+    workflow: [
+      'Client project for BBM Business Bangla Machineries (established 2017)',
+      'Integrated WordPress backend with JWT authentication system',
+      'Developed comprehensive e-commerce features with WooCommerce API',
+      'Implemented custom PDF generation for professional quotations',
+      'Built local SQLite database with offline functionality',
+      'Created responsive UI with Material Design principles',
+      'Deployed cross-platform app supporting Android and iOS',
+      'Delivered complete solution for industrial machinery sales'
+    ],
+    github: 'https://github.com/Shah139'
+  },
+  {
+    id: 'car-service-tracker',
+    title: 'Car Service Tracker',
+    date: 'Jan 15, 2024',
+    description: 'A comprehensive Flutter application for managing vehicle maintenance, fuel consumption, and service reminders with cloud backup and real-time synchronization.',
+    details: [
+      'Features:',
+      ' Dashboard: Multi-vehicle overview with cost breakdowns and interactive charts',
+      ' Vehicle Management: Add/edit vehicles with photos and complete profiles',
+      ' Service Tracking: Comprehensive maintenance log with cost tracking',
+      ' Fuel Management: Track fuel purchases, consumption, and efficiency metrics',
+      ' Smart Reminders: Date and mileage-based service notifications',
+      ' Cloud Features: Supabase backend with real-time sync and offline support',
+      ' Analytics & Reporting: Cost breakdowns, monthly trends, and PDF export',
+      'Tech Stack:',
+      'Flutter 3.7.0+ (Frontend)',
+      'GetX 4.6.6 (State Management)',
+      'Supabase 1.10.7 (Backend & Database)',
+      'SQLite (Local Database)',
+      'fl_chart 0.66.2 (Data Visualization)',
+      'PDF Generation & Printing'
+    ],
+    packages: [
+      'flutter',
+      'get',
+      'supabase_flutter',
+      'sqflite',
+      'fl_chart',
+      'pdf',
+      'printing',
+      'image_picker',
+      'path_provider',
+      'shared_preferences',
+      'uuid',
+      'intl',
+      'crypto',
+      'motion'
+    ],
+    screenshots: [
+      carNotes1,
+      carNotes2,
+      carNotes3,
+      carNotes4,
+      carNotes5,
+      carNotes6,
+      carNotes7
+    ],
+    workflow: [
+      'User creates account and logs in to the app',
+      'Add vehicles with photos, details, and license plate information',
+      'Log service entries with costs, mileage, and photo documentation',
+      'Track fuel purchases and consumption for cost analysis',
+      'Set up service reminders for maintenance intervals',
+      'View interactive charts and analytics for cost breakdowns',
+      'Generate PDF reports and export data',
+      'Real-time sync across devices with offline support'
+    ],
+    github: 'https://github.com/Shah139'
+  },
+  {
+    id: 'khabar-khabo',
     title: 'Khabar Khabo',
     date: 'Aug 19, 2025',
     description: 'A modern food delivery application built with Flutter that connects users with delicious food from local restaurants. Order your favorite meals, customize them with add-ons, and track your delivery in real-time.',
     details: [
       'Features:',
-      '🍔 Extensive Menu: Browse through various food categories including burgers, salads, cookies, desserts, and drinks',
-      '🔧 Customizable Orders: Add extra toppings, sauces, and ingredients to personalize your meal',
-      '🛒 Smart Cart System: Easy-to-use shopping cart with real-time price calculations',
-      '📍 Location Services: Get accurate delivery to your current location',
-      '🔑 User Authentication: Secure login and registration system',
-      '🔥 Firebase Integration: Real-time data synchronization and cloud storage',
-      '💳 Payment Integration: Support for bKash and other payment methods',
-      '📊 Order Tracking: Real-time delivery progress updates',
-      '🌙 Theme Support: Light and dark mode with customizable themes',
-      '📱 Cross-platform: Available on both Android and iOS devices',
+      ' Extensive Menu: Browse through various food categories including burgers, salads, cookies, desserts, and drinks',
+      ' Customizable Orders: Add extra toppings, sauces, and ingredients to personalize your meal',
+      ' Smart Cart System: Easy-to-use shopping cart with real-time price calculations',
+      ' Location Services: Get accurate delivery to your current location',
+      ' User Authentication: Secure login and registration system',
+      ' Firebase Integration: Real-time data synchronization and cloud storage',
+      ' Payment Integration: Support for bKash and other payment methods',
+      ' Order Tracking: Real-time delivery progress updates',
+      ' Theme Support: Light and dark mode with customizable themes',
+      ' Cross-platform: Available on both Android and iOS devices',
       'Tech Stack:',
       'Flutter (Frontend)',
       'Firebase (Database & Backend)',
@@ -80,6 +223,7 @@ const dummyProjects = [
     github: 'https://github.com/Shah139/khabar-khabo'
   },
   {
+    id: 'snapsdi',
     title: 'snapsdi',
     date: 'Jul 1, 2023',
     description: 'Snapsdi is a social media app built with Flutter, powered by Supabase for database management, and GetX for state management. It enables users to connect, share posts, update profile information, and engage with others through likes and comments.',
@@ -124,6 +268,7 @@ const dummyProjects = [
     github: 'https://github.com/Shah139/SSnapsdi'
   },
   {
+    id: 'timecraft',
     title: 'TIMECRAFT',
     date: 'Dec 15, 2023',
     description: 'TIMECRAFT is a productivity-enhancing to-do app built with Flutter and GetX for state management. It helps users efficiently manage tasks and stay organized.',
@@ -168,6 +313,7 @@ const dummyProjects = [
     github: 'https://github.com/Shah139/TIMECRAFT'
   },
   {
+    id: 'quran-in-bangla',
     title: 'Quran-in-Bangla',
     date: 'Jan 10, 2024',
     description: 'A simple and peaceful way to listen to the Quran in Bangla with visual ayah display. Built using Flutter and GetX, this app offers smooth navigation and API-driven audio playback to bring the divine message closer to your heart.',
@@ -210,8 +356,11 @@ const dummyProjects = [
 ];
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [zoomedImage, setZoomedImage] = useState(null);
+  const navigate = useNavigate();
+
+  const handleProjectClick = (projectId) => {
+    navigate(`/projects/${projectId}`);
+  };
 
   return (
     <div style={{ minHeight: '100vh', width: '100%', background: '#faf8f6', padding: '0', margin: '0' }}>
@@ -241,11 +390,10 @@ export default function ProjectsPage() {
                 border: '1px solid #ececec',
                 cursor: 'pointer',
                 transition: 'box-shadow 0.2s',
-                outline: selectedProject === proj ? '2px solid #ff5722' : 'none',
               }}
-              onClick={() => setSelectedProject(proj)}
+              onClick={() => handleProjectClick(proj.id)}
               tabIndex={0}
-              onKeyDown={e => { if (e.key === 'Enter') setSelectedProject(proj); }}
+              onKeyDown={e => { if (e.key === 'Enter') handleProjectClick(proj.id); }}
               aria-label={`Open details for ${proj.title}`}
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
@@ -257,176 +405,6 @@ export default function ProjectsPage() {
           ))}
         </div>
       </div>
-      {selectedProject && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          background: 'rgba(0,0,0,0.35)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000,
-        }}
-          onClick={() => setSelectedProject(null)}
-        >
-          <div
-            style={{
-              background: '#fff',
-              borderRadius: '1.2rem',
-              boxShadow: '0 4px 32px #0002',
-              padding: '2.5rem 2rem',
-              width: '80vw',
-              maxWidth: 1100,
-              height: '80vh',
-              maxHeight: '90vh',
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.5rem',
-              overflowY: 'auto',
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setSelectedProject(null)}
-              style={{
-                position: 'absolute',
-                top: 16,
-                right: 16,
-                background: 'none',
-                border: 'none',
-                fontSize: '1.5rem',
-                color: '#ff5722',
-                cursor: 'pointer',
-              }}
-              aria-label="Close project details"
-            >
-              ×
-            </button>
-            <div style={{ color: '#888', fontSize: '1rem', marginBottom: '0.5rem' }}>{selectedProject.date}</div>
-            <div style={{ fontWeight: 800, fontSize: '2rem', color: '#222', marginBottom: '0.5rem' }}>{selectedProject.title}</div>
-            <div style={{ color: '#444', fontSize: '1.15rem', marginBottom: '1.2rem' }}>{selectedProject.description}</div>
-            {/* Details Section */}
-            {Array.isArray(selectedProject.details) ? (
-              <div style={{ color: '#222', fontSize: '1.08rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {selectedProject.details.map((line, idx) => (
-                  <div key={idx}>{line}</div>
-                ))}
-              </div>
-            ) : (
-              <div style={{ color: '#222', fontSize: '1.08rem', marginBottom: '1.2rem' }}>{selectedProject.details}</div>
-            )}
-            {/* Packages Section */}
-            {selectedProject.packages && (
-              <div>
-                <div style={{ fontWeight: 600, marginBottom: 8 }}>Flutter Packages Used:</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  {selectedProject.packages.map(pkg => (
-                    <span key={pkg} style={{
-                      background: '#e0f7fa',
-                      color: '#00796b',
-                      borderRadius: '1.2rem',
-                      padding: '0.3rem 1rem',
-                      fontSize: '1rem',
-                      fontWeight: 500,
-                      boxShadow: '0 1px 4px #0001',
-                    }}>{pkg}</span>
-                  ))}
-                </div>
-              </div>
-            )}
-            {/* Screenshots Section */}
-            {selectedProject.screenshots && (
-              <div>
-                <div style={{ fontWeight: 600, marginBottom: 8 }}>App Screenshots:</div>
-                <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: 8 }}>
-                  {selectedProject.screenshots.map((src, idx) => (
-                    <img
-                      key={idx}
-                      src={src}
-                      alt={`Screenshot ${idx + 1}`}
-                      style={{ width: 140, height: 255, objectFit: 'cover', borderRadius: '0.7rem', boxShadow: '0 2px 8px #0001', cursor: 'zoom-in' }}
-                      onClick={() => setZoomedImage(src)}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-            {/* Workflow Section */}
-            {selectedProject.workflow && (
-              <div>
-                <div style={{ fontWeight: 600, marginBottom: 8 }}>Workflow:</div>
-                <ol style={{ color: '#444', fontSize: '1.05rem', marginLeft: 18 }}>
-                  {selectedProject.workflow.map((step, idx) => (
-                    <li key={idx}>{step}</li>
-                  ))}
-                </ol>
-              </div>
-            )}
-            {/* GitHub Link */}
-            {selectedProject.github && (
-              <div style={{ marginTop: 12 }}>
-                <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" style={{
-                  background: '#222',
-                  color: '#fff',
-                  padding: '0.6rem 1.4rem',
-                  borderRadius: '1.2rem',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                  fontSize: '1.08rem',
-                  boxShadow: '0 2px 8px #0002',
-                  display: 'inline-block',
-                }}>View on GitHub</a>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-      {zoomedImage && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            background: 'rgba(0,0,0,0.7)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 2000,
-          }}
-          onClick={() => setZoomedImage(null)}
-        >
-          <div
-            style={{
-              position: 'relative',
-              maxWidth: '90vw',
-              maxHeight: '90vh',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <img
-              src={zoomedImage}
-              alt="Zoomed screenshot"
-              style={{
-                maxWidth: '85vw',
-                maxHeight: '85vh',
-                borderRadius: '1rem',
-                boxShadow: '0 4px 32px #0008',
-                background: '#fff',
-                objectFit: 'contain',
-              }}
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 } 
