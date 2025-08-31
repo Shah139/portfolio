@@ -1,6 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from './Header.jsx';
+
+// Custom hook for responsive design
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
+}
 
 // Import images
 import snapsdi1 from './assets/projects/snapsdi1.png';
@@ -19,7 +41,7 @@ import khabar1 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-
 import khabar2 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-12-783_com.example.khabar_khabo.jpg';
 import khabar3 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-23-616_com.example.khabar_khabo.jpg';
 import khabar4 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-38-764_com.example.khabar_khabo.jpg';
-import khabar5 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-36-54-052_com.example.khabar_khabo.jpg';
+import khabar5 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-37-01-599_com.example.khabar_khabo.jpg';
 import khabar6 from './assets/projects/Khabar_khabo/Screenshot_2025-08-19-11-37-01-599_com.example.khabar_khabo.jpg';
 import carNotes1 from './assets/projects/car-notes/dfs (1).jpg';
 import carNotes2 from './assets/projects/car-notes/dfs (2).jpg';
@@ -360,17 +382,62 @@ export default function ProjectDetailsPage() {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [zoomedImage, setZoomedImage] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const { width } = useWindowSize();
 
   // Find the project by ID
   const project = projects.find(p => p.id === projectId);
+
+  // Touch/swipe functionality for mobile
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && project.screenshots.length > 1) {
+      nextImage();
+    }
+    if (isRightSwipe && project.screenshots.length > 1) {
+      prevImage();
+    }
+  };
 
   if (!project) {
     return (
       <div style={{ minHeight: '100vh', width: '100%', background: '#faf8f6', padding: '0', margin: '0' }}>
         <Header />
-        <div style={{ width: '100%', maxWidth: 1100, margin: '0 auto', padding: '4rem 1rem 2rem 1rem', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#222', marginBottom: '1rem' }}>Project Not Found</h1>
-          <p style={{ color: '#555', fontSize: '1.15rem', marginBottom: '2rem' }}>
+        <div style={{ 
+          width: '100%', 
+          maxWidth: 1100, 
+          margin: '0 auto', 
+          padding: '4rem 1rem 2rem 1rem', 
+          textAlign: 'center' 
+        }}>
+          <h1 style={{ 
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)', 
+            fontWeight: 800, 
+            color: '#222', 
+            marginBottom: '1rem' 
+          }}>
+            Project Not Found
+          </h1>
+          <p style={{ 
+            color: '#555', 
+            fontSize: 'clamp(1rem, 3vw, 1.15rem)', 
+            marginBottom: '2rem' 
+          }}>
             The project you're looking for doesn't exist.
           </p>
           <button
@@ -380,7 +447,7 @@ export default function ProjectDetailsPage() {
               color: '#fff',
               padding: '0.7rem 1.7rem',
               borderRadius: '1.2rem',
-              fontSize: '1.1rem',
+              fontSize: 'clamp(1rem, 3vw, 1.1rem)',
               fontWeight: 600,
               border: 'none',
               boxShadow: '0 2px 8px #0002',
@@ -409,7 +476,12 @@ export default function ProjectDetailsPage() {
   return (
     <div style={{ minHeight: '100vh', width: '100%', background: '#faf8f6', padding: '0', margin: '0' }}>
       <Header />
-      <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', padding: '4rem 1rem 2rem 1rem' }}>
+      <div style={{ 
+        width: '100%', 
+        maxWidth: 1200, 
+        margin: '0 auto', 
+        padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 1rem) clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 1rem)' 
+      }}>
         {/* Back Button */}
         <button
           onClick={() => navigate('/projects')}
@@ -417,34 +489,69 @@ export default function ProjectDetailsPage() {
             background: 'none',
             border: 'none',
             color: '#ff5722',
-            fontSize: '1.1rem',
+            fontSize: 'clamp(1rem, 3vw, 1.1rem)',
             fontWeight: 600,
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            marginBottom: '2rem',
-            padding: '0.5rem 0',
+            gap: 'clamp(0.3rem, 1vw, 0.5rem)',
+            marginBottom: 'clamp(1rem, 4vw, 2rem)',
+            padding: 'clamp(0.5rem, 1.5vw, 0.5rem) clamp(0.5rem, 1.5vw, 0.5rem)',
+            borderRadius: '0.5rem',
+            transition: 'all 0.2s ease',
+            minHeight: '44px',
+            minWidth: '44px'
+          }}
+          onTouchStart={(e) => {
+            e.target.style.background = '#f0f0f0';
+            e.target.style.transform = 'scale(0.95)';
+          }}
+          onTouchEnd={(e) => {
+            e.target.style.background = 'none';
+            e.target.style.transform = 'scale(1)';
           }}
         >
           ← Back to Projects
         </button>
 
         {/* Main Content Layout */}
-        <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start' }}>
+        <div style={{ 
+          display: 'flex', 
+          gap: 'clamp(1rem, 4vw, 3rem)', 
+          alignItems: 'flex-start',
+          flexDirection: width <= 768 ? 'column' : 'row'
+        }}>
           {/* Left Section - Project Details */}
-          <div style={{ flex: '1', minWidth: 0 }}>
+          <div style={{ 
+            flex: '1', 
+            minWidth: 0,
+            order: width <= 768 ? 2 : 1
+          }}>
             {/* Project Header */}
-            <div style={{ color: '#888', fontSize: '1rem', marginBottom: '0.5rem', textAlign: 'left' }}>{project.date}</div>
-            <h1 style={{ fontWeight: 800, fontSize: '2.8rem', color: '#222', marginBottom: '1.5rem', lineHeight: 1.1, textAlign: 'left' }}>
+            <div style={{ 
+              color: '#888', 
+              fontSize: 'clamp(0.9rem, 2.5vw, 1rem)', 
+              marginBottom: '0.5rem', 
+              textAlign: 'left' 
+            }}>
+              {project.date}
+            </div>
+            <h1 style={{ 
+              fontWeight: 800, 
+              fontSize: 'clamp(2rem, 6vw, 2.8rem)', 
+              color: '#222', 
+              marginBottom: 'clamp(1rem, 3vw, 1.5rem)', 
+              lineHeight: 1.1, 
+              textAlign: 'left' 
+            }}>
               {project.title}
             </h1>
             
             {/* Project Description */}
             <p style={{ 
               color: '#444', 
-              fontSize: '1.15rem', 
-              marginBottom: '2rem', 
+              fontSize: 'clamp(1rem, 3vw, 1.15rem)', 
+              marginBottom: 'clamp(1.5rem, 4vw, 2rem)', 
               lineHeight: 1.6,
               textAlign: 'left'
             }}>
@@ -454,14 +561,21 @@ export default function ProjectDetailsPage() {
             {/* Separator Line */}
             <div style={{ 
               borderTop: '2px dashed #ddd', 
-              margin: '2rem 0',
+              margin: 'clamp(1.5rem, 4vw, 2rem) 0',
               width: '100%' 
             }}></div>
 
             {/* Features and Tech Stack */}
-            <div style={{ marginBottom: '2rem' }}>
+            <div style={{ marginBottom: 'clamp(1.5rem, 4vw, 2rem)' }}>
               {Array.isArray(project.details) ? (
-                <div style={{ color: '#222', fontSize: '1.08rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', textAlign: 'left' }}>
+                <div style={{ 
+                  color: '#222', 
+                  fontSize: 'clamp(0.95rem, 2.5vw, 1.08rem)', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: 'clamp(0.6rem, 2vw, 0.8rem)', 
+                  textAlign: 'left' 
+                }}>
                   {project.details.map((line, idx) => {
                     // Check if this is a heading (ends with colon and no leading space)
                     if (line.endsWith(':') && !line.startsWith(' ')) {
@@ -469,8 +583,8 @@ export default function ProjectDetailsPage() {
                         <div key={idx} style={{ 
                           lineHeight: 1.6,
                           fontWeight: '700',
-                          fontSize: '1.1rem',
-                          marginTop: idx > 0 ? '1.5rem' : '0',
+                          fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
+                          marginTop: idx > 0 ? 'clamp(1rem, 3vw, 1.5rem)' : '0',
                           marginBottom: '0.5rem'
                         }}>
                           {line}
@@ -482,7 +596,7 @@ export default function ProjectDetailsPage() {
                       return (
                         <div key={idx} style={{ 
                           lineHeight: 1.6,
-                          paddingLeft: '1.5rem',
+                          paddingLeft: 'clamp(1rem, 3vw, 1.5rem)',
                           marginBottom: '0.3rem'
                         }}>
                           <span style={{ fontWeight: '700' }}>{line.substring(0, line.indexOf(':') + 1)}</span>
@@ -495,7 +609,7 @@ export default function ProjectDetailsPage() {
                       return (
                         <div key={idx} style={{ 
                           lineHeight: 1.6,
-                          paddingLeft: '3rem',
+                          paddingLeft: 'clamp(2rem, 5vw, 3rem)',
                           fontWeight: '400',
                           marginBottom: '0.5rem'
                         }}>
@@ -508,7 +622,7 @@ export default function ProjectDetailsPage() {
                       return (
                         <div key={idx} style={{ 
                           lineHeight: 1.6,
-                          paddingLeft: '1.5rem',
+                          paddingLeft: 'clamp(1rem, 3vw, 1.5rem)',
                           fontWeight: '400',
                           marginBottom: '0.3rem'
                         }}>
@@ -519,24 +633,41 @@ export default function ProjectDetailsPage() {
                   })}
                 </div>
               ) : (
-                <div style={{ color: '#222', fontSize: '1.08rem', textAlign: 'left' }}>{project.details}</div>
+                <div style={{ 
+                  color: '#222', 
+                  fontSize: 'clamp(0.95rem, 2.5vw, 1.08rem)', 
+                  textAlign: 'left' 
+                }}>
+                  {project.details}
+                </div>
               )}
             </div>
 
             {/* Packages Section */}
             {project.packages && (
-              <div style={{ marginBottom: '2rem' }}>
-                <div style={{ fontWeight: 700, marginBottom: '1rem', fontSize: '1.1rem', color: '#222', textAlign: 'left' }}>
+              <div style={{ marginBottom: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                <div style={{ 
+                  fontWeight: 700, 
+                  marginBottom: 'clamp(0.8rem, 2vw, 1rem)', 
+                  fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', 
+                  color: '#222', 
+                  textAlign: 'left' 
+                }}>
                   Flutter Packages Used:
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', justifyContent: 'flex-start' }}>
+                <div style={{ 
+                  display: 'flex', 
+                  flexWrap: 'wrap', 
+                  gap: 'clamp(0.6rem, 2vw, 0.8rem)', 
+                  justifyContent: 'flex-start' 
+                }}>
                   {project.packages.map(pkg => (
                     <span key={pkg} style={{
                       background: '#e0f7fa',
                       color: '#00796b',
-                      borderRadius: '1.2rem',
-                      padding: '0.4rem 1.2rem',
-                      fontSize: '1rem',
+                      borderRadius: 'clamp(0.8rem, 2.5vw, 1.2rem)',
+                      padding: 'clamp(0.3rem, 1.5vw, 0.4rem) clamp(0.8rem, 2.5vw, 1.2rem)',
+                      fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
                       fontWeight: 500,
                       boxShadow: '0 1px 4px #0001',
                     }}>{pkg}</span>
@@ -547,11 +678,23 @@ export default function ProjectDetailsPage() {
 
             {/* Workflow Section */}
             {project.workflow && (
-              <div style={{ marginBottom: '2rem' }}>
-                <div style={{ fontWeight: 700, marginBottom: '1rem', fontSize: '1.1rem', color: '#222', textAlign: 'left' }}>
+              <div style={{ marginBottom: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                <div style={{ 
+                  fontWeight: 700, 
+                  marginBottom: 'clamp(0.8rem, 2vw, 1rem)', 
+                  fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', 
+                  color: '#222', 
+                  textAlign: 'left' 
+                }}>
                   Workflow:
                 </div>
-                <ol style={{ color: '#444', fontSize: '1.05rem', marginLeft: '1.5rem', lineHeight: 1.8, textAlign: 'left' }}>
+                <ol style={{ 
+                  color: '#444', 
+                  fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)', 
+                  marginLeft: 'clamp(1rem, 3vw, 1.5rem)', 
+                  lineHeight: 1.8, 
+                  textAlign: 'left' 
+                }}>
                   {project.workflow.map((step, idx) => (
                     <li key={idx}>{step}</li>
                   ))}
@@ -561,32 +704,50 @@ export default function ProjectDetailsPage() {
 
             {/* GitHub Link */}
             {project.github && (
-              <div style={{ marginTop: '2rem' }}>
+              <div style={{ marginTop: 'clamp(1.5rem, 4vw, 2rem)' }}>
                 <a href={project.github} target="_blank" rel="noopener noreferrer" style={{
                   background: '#222',
                   color: '#fff',
-                  padding: '0.8rem 1.8rem',
-                  borderRadius: '1.2rem',
+                  padding: 'clamp(0.6rem, 2.5vw, 0.8rem) clamp(1.2rem, 3.5vw, 1.8rem)',
+                  borderRadius: 'clamp(0.8rem, 2.5vw, 1.2rem)',
                   fontWeight: 600,
                   textDecoration: 'none',
-                  fontSize: '1.1rem',
+                  fontSize: 'clamp(1rem, 3vw, 1.1rem)',
                   boxShadow: '0 2px 8px #0002',
                   display: 'inline-block',
-                }}>View on GitHub</a>
+                  transition: 'all 0.2s ease',
+                  minHeight: '44px',
+                  minWidth: '44px',
+                  lineHeight: '1.2'
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.background = '#333';
+                  e.target.style.transform = 'scale(0.95)';
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.background = '#222';
+                  e.target.style.transform = 'scale(1)';
+                }}
+                >View on GitHub</a>
               </div>
             )}
           </div>
 
           {/* Right Section - Image Slideshow */}
           <div style={{ 
-            flex: '0 0 500px', 
-            position: 'sticky',
-            top: '6rem'
+            flex: width <= 768 ? 'none' : '0 0 500px', 
+            width: width <= 768 ? '100%' : 'auto',
+            position: width <= 768 ? 'static' : 'sticky',
+            top: '6rem',
+            order: width <= 768 ? 1 : 2
           }}>
-            <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+            <div style={{ 
+              textAlign: width <= 768 ? 'center' : 'left', 
+              marginBottom: 'clamp(1rem, 3vw, 2rem)' 
+            }}>
               <h3 style={{ 
                 fontWeight: 700, 
-                fontSize: '1.4rem', 
+                fontSize: 'clamp(1.2rem, 3.5vw, 1.4rem)', 
                 color: '#222', 
                 marginBottom: '0.5rem' 
               }}>
@@ -594,7 +755,7 @@ export default function ProjectDetailsPage() {
               </h3>
               <div style={{ 
                 color: '#6c757d', 
-                fontSize: '0.95rem',
+                fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
                 fontWeight: 500
               }}>
                 {currentImageIndex + 1} of {project.screenshots.length}
@@ -602,14 +763,20 @@ export default function ProjectDetailsPage() {
             </div>
 
             {/* Custom Slideshow Layout */}
-            <div style={{ 
-              position: 'relative',
-              height: '600px',
-              marginBottom: '2rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
+            <div 
+              style={{ 
+                position: 'relative',
+                height: width <= 768 ? 'clamp(400px, 60vw, 500px)' : '600px',
+                marginBottom: 'clamp(1rem, 3vw, 2rem)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                overflow: 'hidden'
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               {/* Left Image (Half Hidden) - Only show if there are 3+ images */}
               {project.screenshots.length > 2 && (
                 <div style={{
@@ -618,14 +785,15 @@ export default function ProjectDetailsPage() {
                   zIndex: 1,
                   transform: 'translateX(-30%)',
                   opacity: 0.6,
-                  transition: 'all 0.4s ease'
+                  transition: 'all 0.4s ease',
+                  display: width <= 768 ? 'none' : 'block'
                 }}>
                   <img
                     src={project.screenshots[(currentImageIndex - 1 + project.screenshots.length) % project.screenshots.length]}
                     alt="Previous screenshot"
                     style={{
-                      width: '200px',
-                      height: '300px',
+                      width: width <= 768 ? '150px' : '200px',
+                      height: width <= 768 ? '225px' : '300px',
                       objectFit: 'contain',
                       cursor: 'zoom-in'
                     }}
@@ -644,10 +812,12 @@ export default function ProjectDetailsPage() {
                   src={project.screenshots[currentImageIndex]}
                   alt={`Screenshot ${currentImageIndex + 1}`}
                   style={{
-                    width: '300px',
-                    height: '450px',
+                    width: width <= 768 ? 'clamp(250px, 70vw, 300px)' : '300px',
+                    height: width <= 768 ? 'clamp(375px, 105vw, 450px)' : '450px',
                     objectFit: 'contain',
-                    cursor: 'zoom-in'
+                    cursor: 'zoom-in',
+                    maxWidth: '100%',
+                    maxHeight: '100%'
                   }}
                   onClick={() => handleImageClick(project.screenshots[currentImageIndex])}
                 />
@@ -661,14 +831,15 @@ export default function ProjectDetailsPage() {
                   zIndex: 1,
                   transform: 'translateX(30%)',
                   opacity: 0.6,
-                  transition: 'all 0.4s ease'
+                  transition: 'all 0.4s ease',
+                  display: width <= 768 ? 'none' : 'block'
                 }}>
                   <img
                     src={project.screenshots[(currentImageIndex + 1) % project.screenshots.length]}
                     alt="Next screenshot"
                     style={{
-                      width: '200px',
-                      height: '300px',
+                      width: width <= 768 ? '150px' : '200px',
+                      height: width <= 768 ? '225px' : '300px',
                       objectFit: 'contain',
                       cursor: 'zoom-in'
                     }}
@@ -684,29 +855,43 @@ export default function ProjectDetailsPage() {
                     onClick={prevImage}
                     style={{
                       position: 'absolute',
-                      left: '20px',
+                      left: width <= 768 ? '10px' : '20px',
                       top: '50%',
                       transform: 'translateY(-50%)',
                       background: '#fff',
                       color: '#000',
                       border: '2px solid #000',
                       borderRadius: '50%',
-                      width: '50px',
-                      height: '50px',
+                      width: width <= 768 ? '44px' : '50px',
+                      height: width <= 768 ? '44px' : '50px',
                       cursor: 'pointer',
-                      fontSize: '1.2rem',
+                      fontSize: width <= 768 ? '1rem' : '1.2rem',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       transition: 'all 0.2s ease',
                       zIndex: 4,
-                      fontWeight: 'bold'
+                      fontWeight: 'bold',
+                      minWidth: '44px',
+                      minHeight: '44px'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.background = '#f8f8f8';
-                      e.target.style.transform = 'translateY(-50%) scale(1.05)';
+                      if (width > 768) {
+                        e.target.style.background = '#f8f8f8';
+                        e.target.style.transform = 'translateY(-50%) scale(1.05)';
+                      }
                     }}
                     onMouseLeave={(e) => {
+                      if (width > 768) {
+                        e.target.style.background = '#fff';
+                        e.target.style.transform = 'translateY(-50%) scale(1)';
+                      }
+                    }}
+                    onTouchStart={(e) => {
+                      e.target.style.background = '#f0f0f0';
+                      e.target.style.transform = 'translateY(-50%) scale(0.95)';
+                    }}
+                    onTouchEnd={(e) => {
                       e.target.style.background = '#fff';
                       e.target.style.transform = 'translateY(-50%) scale(1)';
                     }}
@@ -718,29 +903,43 @@ export default function ProjectDetailsPage() {
                     onClick={nextImage}
                     style={{
                       position: 'absolute',
-                      right: '20px',
+                      right: width <= 768 ? '10px' : '20px',
                       top: '50%',
                       transform: 'translateY(-50%)',
                       background: '#fff',
                       color: '#000',
                       border: '2px solid #000',
                       borderRadius: '50%',
-                      width: '50px',
-                      height: '50px',
+                      width: width <= 768 ? '44px' : '50px',
+                      height: width <= 768 ? '44px' : '50px',
                       cursor: 'pointer',
-                      fontSize: '1.2rem',
+                      fontSize: width <= 768 ? '1rem' : '1.2rem',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       transition: 'all 0.2s ease',
                       zIndex: 4,
-                      fontWeight: 'bold'
+                      fontWeight: 'bold',
+                      minWidth: '44px',
+                      minHeight: '44px'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.background = '#f8f8f8';
-                      e.target.style.transform = 'translateY(-50%) scale(1.05)';
+                      if (width > 768) {
+                        e.target.style.background = '#f8f8f8';
+                        e.target.style.transform = 'translateY(-50%) scale(1.05)';
+                      }
                     }}
                     onMouseLeave={(e) => {
+                      if (width > 768) {
+                        e.target.style.background = '#fff';
+                        e.target.style.transform = 'translateY(-50%) scale(1)';
+                      }
+                    }}
+                    onTouchStart={(e) => {
+                      e.target.style.background = '#f0f0f0';
+                      e.target.style.transform = 'translateY(-50%) scale(0.95)';
+                    }}
+                    onTouchEnd={(e) => {
                       e.target.style.background = '#fff';
                       e.target.style.transform = 'translateY(-50%) scale(1)';
                     }}
@@ -754,10 +953,11 @@ export default function ProjectDetailsPage() {
             {/* Thumbnail Navigation */}
             <div style={{ 
               display: 'flex', 
-              gap: '0.8rem', 
+              gap: 'clamp(0.6rem, 2vw, 0.8rem)', 
               justifyContent: 'center',
               flexWrap: 'wrap',
-              padding: '0 1rem'
+              padding: '0 clamp(0.5rem, 2vw, 1rem)',
+              marginBottom: width <= 768 ? '1rem' : '0'
             }}>
               {project.screenshots.map((src, idx) => (
                 <div
@@ -766,21 +966,35 @@ export default function ProjectDetailsPage() {
                     position: 'relative',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    transform: idx === currentImageIndex ? 'scale(1.1)' : 'scale(1)'
+                    transform: idx === currentImageIndex ? 'scale(1.1)' : 'scale(1)',
+                    minWidth: '44px',
+                    minHeight: '44px'
                   }}
                   onClick={() => setCurrentImageIndex(idx)}
+                  onTouchStart={(e) => {
+                    if (idx !== currentImageIndex) {
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                    }
+                  }}
+                  onTouchEnd={(e) => {
+                    if (idx !== currentImageIndex) {
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }
+                  }}
                 >
                   <img
                     src={src}
                     alt={`Thumbnail ${idx + 1}`}
                     style={{
-                      width: '60px',
-                      height: '80px',
+                      width: width <= 768 ? '50px' : '60px',
+                      height: width <= 768 ? '67px' : '80px',
                       objectFit: 'contain',
                       borderRadius: '0.6rem',
                       border: idx === currentImageIndex ? '3px solid #ff5722' : '2px solid #dee2e6',
                       boxShadow: idx === currentImageIndex ? '0 4px 20px rgba(255,87,34,0.3)' : '0 2px 8px rgba(0,0,0,0.1)',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      minWidth: '44px',
+                      minHeight: '44px'
                     }}
                   />
                   {idx === currentImageIndex && (
@@ -809,7 +1023,7 @@ export default function ProjectDetailsPage() {
 
             {/* Progress Indicator */}
             <div style={{
-              marginTop: '1.5rem',
+              marginTop: 'clamp(1rem, 3vw, 1.5rem)',
               textAlign: 'center'
             }}>
               <div style={{
@@ -828,6 +1042,19 @@ export default function ProjectDetailsPage() {
                 }} />
               </div>
             </div>
+
+            {/* Mobile Swipe Instructions */}
+            {width <= 768 && project.screenshots.length > 1 && (
+              <div style={{
+                textAlign: 'center',
+                color: '#666',
+                fontSize: '0.85rem',
+                marginTop: '0.5rem',
+                fontStyle: 'italic'
+              }}>
+                Swipe left/right or use arrows to navigate
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -846,6 +1073,7 @@ export default function ProjectDetailsPage() {
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 2000,
+            padding: width <= 768 ? '1rem' : '2rem'
           }}
           onClick={() => setZoomedImage(null)}
         >
@@ -866,7 +1094,7 @@ export default function ProjectDetailsPage() {
               style={{
                 maxWidth: '85vw',
                 maxHeight: '85vh',
-                borderRadius: '1rem',
+                borderRadius: width <= 768 ? '0.5rem' : '1rem',
                 boxShadow: '0 4px 32px #0008',
                 background: '#fff',
                 objectFit: 'contain',
@@ -876,20 +1104,22 @@ export default function ProjectDetailsPage() {
               onClick={() => setZoomedImage(null)}
               style={{
                 position: 'absolute',
-                top: '-50px',
+                top: width <= 768 ? '-40px' : '-50px',
                 right: '0',
                 background: 'rgba(255,255,255,0.9)',
                 color: '#333',
                 border: 'none',
                 borderRadius: '50%',
-                width: '40px',
-                height: '40px',
-                fontSize: '1.5rem',
+                width: width <= 768 ? '35px' : '40px',
+                height: width <= 768 ? '35px' : '40px',
+                fontSize: width <= 768 ? '1.2rem' : '1.5rem',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+                boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+                minWidth: '44px',
+                minHeight: '44px'
               }}
             >
               ×

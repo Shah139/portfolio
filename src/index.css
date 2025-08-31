@@ -63,6 +63,143 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Responsive Design Improvements */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  body {
+    min-width: 280px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+  }
+  
+  button {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+  
+  h1 {
+    font-size: 2.2em;
+  }
+  
+  button {
+    padding: 0.4em 0.8em;
+    font-size: 0.85em;
+  }
+}
+
+/* Project Details Page Specific Responsive Styles */
+@media (max-width: 768px) {
+  .project-details-container {
+    padding: 1rem !important;
+  }
+  
+  .project-title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+  }
+  
+  .project-description {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+    line-height: 1.5 !important;
+  }
+  
+  .project-features {
+    font-size: clamp(0.9rem, 3vw, 1rem) !important;
+  }
+  
+  .project-packages {
+    gap: 0.5rem !important;
+  }
+  
+  .package-tag {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+    padding: 0.3rem 0.8rem !important;
+  }
+  
+  .slideshow-container {
+    height: clamp(350px, 70vw, 450px) !important;
+  }
+  
+  .main-image {
+    width: clamp(220px, 75vw, 280px) !important;
+    height: clamp(330px, 112.5vw, 420px) !important;
+  }
+  
+  .thumbnail {
+    width: 45px !important;
+    height: 60px !important;
+  }
+  
+  .navigation-arrow {
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-details-container {
+    padding: 0.8rem !important;
+  }
+  
+  .project-title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+  }
+  
+  .project-description {
+    font-size: clamp(0.9rem, 4vw, 1rem) !important;
+  }
+  
+  .slideshow-container {
+    height: clamp(300px, 80vw, 400px) !important;
+  }
+  
+  .main-image {
+    width: clamp(200px, 80vw, 250px) !important;
+    height: clamp(300px, 120vw, 375px) !important;
+  }
+  
+  .thumbnail {
+    width: 40px !important;
+    height: 53px !important;
+  }
+  
+  .navigation-arrow {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Touch-friendly improvements for mobile */
+@media (hover: none) and (pointer: coarse) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .thumbnail {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .navigation-arrow {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
